@@ -28,22 +28,26 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    {{-- <div class="section1 mt-5 mb-5">
+    <div class="section2 mt-5 mb-5">
       <div class="section2-heading text-align-start mb-3">
-        <h4 class="text-white">Categories</h4>
+        <h4 class="text-white">Feel Your Emotion</h4>
       </div>
-      
-      <div class="d-flex flex-wrap justify-content-start align-items-start">
-        <div class="card mt-2 mb-2 ms-2 me-2 cat-card d-flex justify-content-center align-items-center" style="background-color: #495057;">
-          <div class="card-body text-white p-2  d-flex justify-content-center align-items-center">
-           Best Sellers
-          </div>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+        @foreach ($book4s as $book)
+        <div class="swiper-slide"><a href="{{route('book.show',$book->id)}}" class="w-100 h-100">
+            <div class="swiper-book-container" style="background-image: url('{{asset($book->image)}}')"></div>
+            {{-- <img src="{{asset($book->image)}}" alt="" class="swiper-image"> --}}
+        </a></div>
+        @endforeach
         </div>
-    </div> --}}
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
 
     <div class="section2 mt-5 mb-5">
       <div class="section2-heading text-align-start mb-3">
-        <h4 class="text-white">Most Popular</h4>
+        <h4 class="text-white">Be A Self-Made Millionare</h4>
       </div>
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
@@ -56,8 +60,8 @@
         </div>
         <div class="swiper-pagination"></div>
       </div>
-    
     </div>
+   
   
     <div class="section2 mt-5 mb-5">
       <div class="section2-heading text-align-start mb-3">

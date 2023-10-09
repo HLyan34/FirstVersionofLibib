@@ -26,9 +26,9 @@ class AuthorController extends Controller
                     $showUrl = route('authors.show', $row->id);
                     $editUrl = route('authors.edit', $row->id);
                     $destroyUrl = route('authors.destroy', $row->id);
-                    $actionBtn = ' <a href="' . $showUrl . '" class="btn btn-primary btn-sm mt-2 me-2 ms-2">Show</a>';
-                    $actionBtn .= ' <a href="' . $editUrl . '" class="delete btn btn-success btn-sm mt-2 ms-2 me-2">Edit</a>';
-                    $actionBtn .= '<a href="javascript:void(0);" onclick="document.getElementById(\'delete-form-' . $row->id . '\').submit();" class="btn btn-danger btn-sm mt-2 me-2 ms-2">Delete</a>';
+                    $actionBtn = ' <a href="' . $showUrl . '" class="btn btn-primary btn-sm mt-2 me-2 ms-2"><i class="fa-regular fa-eye"></i> <span class="ms-2">Show</span></a>';
+                    $actionBtn .= ' <a href="' . $editUrl . '" class="delete btn btn-success btn-sm mt-2 ms-2 me-2"><i class="fa-solid fa-pen"></i><span class="ms-2">Edit</span></a>';
+                    $actionBtn .= '<a href="javascript:void(0);" onclick="document.getElementById(\'delete-form-' . $row->id . '\').submit();" class="btn btn-danger btn-sm mt-2 me-2 ms-2"><i class="fa-solid fa-trash"></i><span class="ms-2">Delete</span></a>';
                     $actionBtn .= '<form id="delete-form-' . $row->id . '" action="' . $destroyUrl . '" method="POST" style="display: none;" onsubmit="return confirm(\'Are you sure you want to delete this item?\');">';
                     $actionBtn .= csrf_field();
                     $actionBtn .= method_field('DELETE');
@@ -170,9 +170,9 @@ class AuthorController extends Controller
                     $showUrl = route('authors.showtrash', $row->id);
                     $restore = route('authors.restore', $row->id);
                     $destroyUrl = route('authors.forceDelete', $row->id);
-                    $actionBtn = ' <a href="' . $showUrl . '" class="btn btn-primary btn-sm mt-2 me-2 ms-2">Show</a>';
-                    $actionBtn .= ' <a href="' . $restore . '" class="btn btn-warning btn-sm mt-2 ms-2 me-2">Restore</a>';
-                    $actionBtn .= '<a href="javascript:void(0);" data-url="' . $destroyUrl . '" class="btn btn-danger btn-sm mt-2 delete-modal-btn ms-2 me-2">Delete</a>';
+                    $actionBtn = ' <a href="' . $showUrl . '" class="btn btn-primary btn-sm mt-2 me-2 ms-2"><i class="fa-regular fa-eye"></i> <span class="ms-2">Show</span></a>';
+                    $actionBtn .= ' <a href="' . $restore . '" class="btn btn-warning btn-sm mt-2 ms-2 me-2"><i class="fa-solid fa-trash-can-arrow-up"></i><span class="ms-2">Restore</span></a>';
+                    $actionBtn .= '<a href="javascript:void(0);" data-url="' . $destroyUrl . '" class="btn btn-danger btn-sm mt-2 delete-modal-btn ms-2 me-2"><i class="fa-solid fa-trash"></i><span class="ms-2">Delete</span></a>';
                     $actionBtn .= csrf_field();
                     $actionBtn .= method_field('DELETE');
                     $actionBtn .= '</form>';

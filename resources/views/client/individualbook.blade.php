@@ -8,6 +8,10 @@
           <div class="book-title h4 text-white mb-3">
              {{$book->books_title}}
           </div>
+
+          {{-- <div class="ms-2 mb-2 h3">
+            <i class="fa-solid fa-bookmark"></i>
+          </div> --}}
           <div class="text-white overflow-hidden">
             {{$book->books_description}}
           </div>
@@ -15,10 +19,14 @@
             <h4>Book Categories</h4>
             <p class="mt-2">
               @foreach ($categories as $category)
-              <a href="{{ route('book.categoryshow',$category->id) }}" class="text-decoration-none text-warning">
-                {{$category->name}} ,
+              <a href="{{ route('book.categoryshow', $category->id) }}" class="text-decoration-none text-warning ">
+                  {{$category->name}}
               </a>
-              @endforeach
+              @if (!$loop->last)
+                  ,
+              @endif
+          @endforeach
+          
             </p>
           </div>
           <div class="mt-5 d-flex justify-content-sm-between flex-column flex-sm-row align-items-start">

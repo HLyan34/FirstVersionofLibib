@@ -24,7 +24,7 @@
     <div class="container mt-5 mb-5 border" style="background-color:#212529; ">
       <div class="card-header d-flex justify-content-between">
         <h2 class="card-title  card-title-custom pt-3 ps-2 text-white">Show Trashed Authors</h2>
-        <a href="{{route('authors.trashed')}}" class="btn btn-warning d-flex justify-content-center align-items-center" style="height:50px;">Back</a>
+        <a href="{{route('authors.trashed')}}" class="btn btn-warning d-flex justify-content-center align-items-center" style="height:50px;"> <i class="fa-solid fa-arrow-left"></i> <span class="ms-2">Back</span></a>
       </div>
       <div class="card-body">
         
@@ -61,7 +61,7 @@
           </div>
           <div class="col-12 col-md-6 mt-3 mt-md-0">
             <a href="{{route('authors.restore',$author->id)}}" class="edit btn btn-warning btn-sm mt-2 me-3">Restore</a>
-            <a href="javascript:void(0);" data-url="{{route('authors.forceDelete', $author->id)}}" class="btn btn-danger btn-sm mt-2 delete-modal-btn me-3">Delete</a>
+            <a href="javascript:void(0);" data-url="{{route('authors.forceDelete', $author->id)}}" class="btn btn-danger btn-sm mt-2 delete-modal-btn me-3"><i class="fa-solid fa-trash"></i><span class="ms-2">Delete</span></a>
           </div>
         </div>
        

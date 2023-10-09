@@ -3,7 +3,7 @@
     <div class="h3 mt-3 mb-3">Books</div>
     <div class="d-flex flex-wrap justify-content-center  align-items-center mt-3 mb-5">
       @foreach ($books as $book )
-      <a class="d-flex flex-column m-4 text-decoration-none text-white" href="{{route('book.show',$book->id)}}">
+      <a class="d-flex flex-column m-4 text-decoration-none text-white books-books-books" href="{{route('book.show',$book->id)}}">
         <div class="book" style="background-image: url('{{asset($book->image)}}')">
 
         </div>

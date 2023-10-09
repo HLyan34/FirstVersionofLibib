@@ -41,6 +41,7 @@ const nav_item_cat_drop = document.querySelector('.nav-item-cat-drop');
 const search_icons = document.querySelector('.search-icons');
 
 
+
 nav_item_cat_drop.addEventListener('click', function (e) {
   cat_nav.classList.toggle('dropdown-catnav-display');
   cat_nav.classList.toggle('dropdown-cat-nav');
@@ -65,3 +66,30 @@ if (window.location.pathname === '/category') {
     }
   };
 }
+const nav_links = document.querySelectorAll('.nav-link');
+function updateButtonState() {
+  const currentPage = getCurrentPage();
+  nav_links.forEach(link =>
+    link.classList.remove("nav-link-active")
+  );
+  console.log(currentPage)
+  const navlinks = document.querySelector('.' + currentPage + '_nav');
+  if (navlinks) {
+    navlinks.classList.add("nav-link-active");
+  }
+}
+
+function getCurrentPage() {
+  const path = window.location.pathname;
+  const pageName = path.substring(path.lastIndexOf('/') + 1);
+
+  switch (pageName) {
+    case "book":
+    case "category":
+    case "author":
+    default:
+      return pageName; // Or handle this case as needed
+  }
+}
+
+updateButtonState();

@@ -64,6 +64,6 @@ class DashboardController extends Controller
     private function calculatePercentageChange($lastWeek, $thisWeek)
     {
         if ($lastWeek == 0) return 100;
-        return (($thisWeek - $lastWeek) / $lastWeek) * 100;
+        return round((($thisWeek - $lastWeek) / $lastWeek) * 100, 2);
     }
 }

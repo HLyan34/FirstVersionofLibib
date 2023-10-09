@@ -97,6 +97,7 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 .book-container {
     min-height: 80vh;
@@ -112,6 +113,7 @@ html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 .swiper-book-container-category {
     background-position: center;
@@ -156,17 +158,16 @@ html {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-#searchResults {
-}
-
-#searchResults a {
+#searchResults a,
+#searchResults2 a {
     display: block;
     color: white;
     text-decoration: none;
     border-bottom: 1px solid #ccc;
 }
 
-#searchResults a:hover {
+#searchResults a:hover,
+#searchResults2 a:hover {
     background-color: #333;
 }
 
@@ -233,4 +234,51 @@ html {
 
 #scrollTopButton:hover {
     opacity: 1;
+}
+.custom-form-control {
+    width: 50%;
+}
+@media (max-width: 1200px) {
+    .custom-form-control {
+        width: 80% !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .custom-form-control {
+        width: 100% !important;
+    }
+}
+.nav-item-cat-drop {
+    cursor: pointer;
+}
+.second-nav-link:hover {
+    color: #00a1ff !important;
+}
+.nav-link:hover {
+    color: #00a1ff !important;
+}
+.nav-link-active {
+    color: #00a1ff !important;
+}
+.books-books-books {
+    width: 180px;
+    height: 270px;
+}
+.nav-search-box {
+    background-color: #4b555e;
+    height: 50px;
+    position: relative;
+    display: none;
+}
+.form-in-nav {
+    height: 100%;
+}
+@media (max-width: 991px) {
+    .nav-search-box {
+        display: flex;
+    }
+    .search-icons {
+        display: none !important;
+    }
 }

@@ -3,7 +3,7 @@
     <div class="container mt-5 mb-5 border" style="background-color:#212529; ">
       <div class="card-header d-flex justify-content-between">
         <h2 class="card-title  card-title-custom pt-3 ps-2 text-white">Show Authors</h2>
-        <a href="{{route('authors.index')}}" class="btn btn-warning d-flex justify-content-center align-items-center" style="height:50px;">Back</a>
+        <a class="btn btn-warning mt-2 me-5 d-flex justify-content-center align-items-center" href="{{route('authors.index')}}"> <i class="fa-solid fa-arrow-left"></i> <span class="ms-2">Back</span></a>
       </div>
       <div class="card-body">
         
@@ -48,8 +48,8 @@
             <p  class="fw-bold text-white">Action</p>
           </div>
           <div class="col-12 col-md-6 mt-3 mt-md-0">
-            <a href="{{route('authors.edit',$author->id)}}" class="edit btn btn-success btn-sm mt-2 me-3">Edit</a>
-            <a href="javascript:void(0);" onclick="document.getElementById('delete-form-{{ $author->id }}').submit();" class="btn btn-danger btn-sm mt-2">Delete</a>
+            <a href="{{route('authors.edit',$author->id)}}" class="edit btn btn-success btn-sm mt-2 me-3"><i class="fa-solid fa-pen"></i> <span class="ms-2">Edit</span></a>
+            <a href="javascript:void(0);" onclick="document.getElementById('delete-form-{{ $author->id }}').submit();" class="btn btn-danger btn-sm mt-2"><i class="fa-solid fa-trash"></i><span class="ms-2">Delete</span></a>
          <form id="delete-form-{{ $author->id }}" action="{{ route('authors.destroy',$author->id) }}" method="POST" style="display: none;" >
            @csrf
           @method('DELETE')

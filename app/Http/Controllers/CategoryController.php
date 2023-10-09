@@ -29,9 +29,9 @@ class CategoryController extends Controller
                     $editUrl = route('categories.edit', $row->id);
                     $destroyUrl = route('categories.destroy', $row->id);
 
-                    $actionBtn = ' <a href="' . $showUrl . '" class="btn btn-primary btn-sm mt-2 me-2 ms-2">Show</a>';
-                    $actionBtn .= '<a href="' . $editUrl . '" class="edit btn btn-success btn-sm me-2 ms-2 mt-2">Edit</a>';
-                    $actionBtn .= '<a href="javascript:void(0);" data-url="' . $destroyUrl . '" class="btn btn-danger btn-sm mt-2 delete-modal-btn me-2 ms-2">Delete</a>';
+                    $actionBtn = ' <a href="' . $showUrl . '" class="btn btn-primary btn-sm mt-2 me-2 ms-2"><i class="fa-regular fa-eye"></i> <span class="ms-2">Show</span></a>';
+                    $actionBtn .= '<a href="' . $editUrl . '" class="edit btn btn-success btn-sm me-2 ms-2 mt-2"><i class="fa-solid fa-pen"></i><span class="ms-2">Edit</span></a>';
+                    $actionBtn .= '<a href="javascript:void(0);" data-url="' . $destroyUrl . '" class="btn btn-danger btn-sm mt-2 delete-modal-btn me-2 ms-2"><i class="fa-solid fa-trash"></i><span class="ms-2">Delete</span></a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])

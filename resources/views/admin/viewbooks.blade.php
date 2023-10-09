@@ -4,8 +4,8 @@
       <div class="heading-container w-100 mt-3 mb-5 d-flex justify-content-sm-between flex-column flex-sm-row justify-content-start align-items-sm-center align-items-start">
         <h3 class="h3 text-white mt-2">View Books</h1>
           <div>
-            <a class="btn btn-warning mt-2" href="{{route('books.trashed')}}">Trashed</a>
-            <a class="btn btn-success mt-2" href="{{route('books.create')}}">Create</a>
+            <a class="btn btn-outline-danger mt-2" href="{{route('books.trashed')}}"><i class="fa-solid fa-trash"></i> <span class="ms-2">Trashed</span></a>
+            <a class="btn btn-success mt-2" href="{{route('books.create')}}"><i class="fa-solid fa-plus"></i><span class="ms-2">Create</span></a>
           </div>
       </div>
       <table class="table table-bordered data-table-books table-dark table-striped w-100 mt-5">

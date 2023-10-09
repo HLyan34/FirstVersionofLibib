@@ -5,10 +5,10 @@
           <div class="card-header d-flex justify-content-sm-between flex-column flex-sm-row justify-content-start align-items-sm-center align-items-start">
             <h2 class="card-title card-title-custom text-white  pt-3 ps-2 ">Add Categories</h2>
             @if(auth()->user()->user_role == 'admin')
-            <a class="btn btn-warning mt-2 me-5" href="{{ route('categories.index') }}">View</a>
+            <a class="btn btn-warning mt-2 me-5" href="{{ route('categories.index') }}">View Categories</a>
             @endif
             @if(auth()->user()->user_role == 'author')
-            <a class="btn btn-warning mt-2 me-5" href="{{ route('books.index') }}">View</a>
+            <a class="btn btn-warning mt-2 me-5" href="{{ route('books.index') }}"><i class="fa-solid fa-book"></i> <span class="ms-2">View Books</span></a>
             @endif
     
           </div>
@@ -22,7 +22,7 @@
               @csrf
               <div class="form-group me-sm-5 mt-2 ps-2">
                 <label for="categoryName" class="pb-2 text-white card-custom-body-text mt-3 mb-3">Category Name</label>
-                <input name='category' type="text" class="form-control" id="categoryName" placeholder="Category Name">
+                <input name='category' type="text" class="form-control custom-form-control" id="categoryName" placeholder="Category Name">
               </div>
               <button type="submit" class="btn btn-primary mt-4 card-custom-body-text ms-2 mb-3">Submit</button>
             </form>

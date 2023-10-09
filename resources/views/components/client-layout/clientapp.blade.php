@@ -44,16 +44,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-white" aria-current="page" href="{{route('home')}}">Home</a>
+                <a class="nav-link text-white home_nav" aria-current="page" href="{{route('home')}}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="{{route('book')}}">Books</a>
+                <a class="nav-link text-white book_nav" href="{{route('book')}}">Books</a>
               </li>
               <li class="nav-item nav-item-cat-drop">
-                <a class="nav-link text-white nav-link-categories" >Categories  <i class="fa-solid fa-caret-down"></i></a>
+                <a class="nav-link text-white nav-link-categories category_nav" >Categories  <i class="fa-solid fa-caret-down"></i></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="{{route('author')}}">Authors</a>
+                <a class="nav-link text-white author_nav" href="{{route('author')}}">Authors</a>
               </li>
               <li class="nav-item search-icons d-flex justify-content-center align-items-center ms-2  mt-3 mt-sm-0">
                 <a class="nav-link text-white search-icons  d-flex justify-content-center align-items-center" href="#">   
@@ -93,10 +93,21 @@
         <nav class="w-100 cat-navbar dropdown-cat-nav d-flex flex-wrap">
           <a class="nav-link text-white"  href="{{route('book.category')}}">All Categories</a>
           @foreach ($categories as $category)
-            <a class="nav-link text-white"  href="{{ route('book.categoryshow',$category->id) }}">{{$category->name}}</a>
+            <a class="nav-link text-white second-nav-link {{$category->id}}_nav"  href="{{ route('book.categoryshow',$category->id) }}">{{$category->name}}</a>
           @endforeach
         </nav>
       </nav>
+
+
+      <div class="nav-search-box w-100 justify-content-center align-items-center">
+           <form id="searchForm2" class="d-flex justify-content-center align-items-center form-in-nav" style="width: 90%;">
+            <input type="text" id="searchInput2" class="form-control ms-2 me-2" placeholder="Search for books...">
+        </form>
+        <div class="searchingResults">
+          <div id="searchResults2">
+          </div>
+        </div>
+      </div>
       
       {{$slot}}
       <div class="text-white" style="background-color: #343a40;">
@@ -236,6 +247,33 @@ $('#subscriptionForm').on('submit', function(event) {
                   });
               } else {
                   $('#searchResults').empty();
+              }
+          });
+
+          $('#searchInput2').on('input', function () {
+              var query = $(this).val();
+  
+              if (query.length >= 2) {
+                  $.ajax({
+                      url: '{{ route('books.search') }}',
+                      method: 'GET',
+                      data: { query: query },
+                      dataType: 'json', // Update the dataType to 'json'
+                      success: function (data) {
+                        
+                          $('#searchResults2').empty();
+                          $.each(data.results, function (index, result) {
+                          
+                              var bookLink = $('<a>')
+                                  .attr('href', result.url) 
+                                  .text(result.title)
+                                  .addClass('custom-search-class p-3 text-decoration-none text-white')
+                              $('#searchResults2').append(bookLink);
+                          });
+                      }
+                  });
+              } else {
+                  $('#searchResults2').empty();
               }
           });
       });

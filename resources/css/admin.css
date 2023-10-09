@@ -262,3 +262,48 @@ div.dataTables_filter.label.input {
         flex: 60%;
     }
 }
+.custom-form-control {
+    width: 50%;
+}
+@media (max-width: 1200px) {
+    .custom-form-control {
+        width: 80% !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .custom-form-control {
+        width: 100% !important;
+    }
+}
+
+.page-item.disabled .page-link {
+    background-color: #1b263e;
+    color: #fff;
+    border-color: #1b263e;
+}
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #111426;
+    border-color: #111426;
+}
+.page-item:last-child .page-link {
+    background-color: #1b263e;
+    color: #fff;
+    border-color: #1b263e;
+}
+.page-item:first-child .page-link {
+    background-color: #1b263e;
+    color: #fff;
+    border-color: #1b263e;
+}
+.page-link {
+    color: #fff;
+    background-color: #253454;
+    border-color: #253454;
+}
+.page-link:hover {
+    color: #fff;
+    background-color: #111426;
+    border-color: #111426;
+}

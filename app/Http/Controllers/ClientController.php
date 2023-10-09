@@ -14,28 +14,34 @@ class ClientController extends Controller
 {
     public function category()
     {
-        $query = Book::with(['author', 'categories'])
+        $books = Book::with(['author', 'categories'])
             ->select('books.*', 'authors.name as author_name')
-            ->whereNull('books.deleted_at');
-        $books = $query->leftJoin('authors', 'books.author_id', '=', 'authors.id')
+            ->whereNull('books.deleted_at')
+            ->leftJoin('authors', 'books.author_id', '=', 'authors.id')
             ->get();
 
-        $query = Book::with(['author', 'categories'])
+        $categoryNames2 = ['Self-Improvement', 'Money', 'Economy'];
+        $book2s = Book::with(['author', 'categories'])
+            ->whereHas('categories', function ($query) use ($categoryNames2) {
+                $query->whereIn('name', $categoryNames2);
+            })
+            ->get();
+
+        $book3s = Book::with(['author', 'categories'])
             ->select('books.*', 'authors.name as author_name')
             ->leftJoin('authors', 'books.author_id', '=', 'authors.id')
             ->whereNull('books.deleted_at')
-            ->where('authors.name', 'Robert Kiyosaki');
+            ->orderBy('books.created_at', 'desc')
+            ->get();
 
-        $book2s = $query->get();
+        $categoryNames = ['Sci-Fi', 'Fiction'];
+        $book4s = Book::with(['author', 'categories'])
+            ->whereHas('categories', function ($query) use ($categoryNames) {
+                $query->whereIn('name', $categoryNames);
+            })
+            ->get();
 
-        $query = Book::with(['author', 'categories'])
-            ->select('books.*', 'authors.name as author_name')
-            ->leftJoin('authors', 'books.author_id', '=', 'authors.id')
-            ->whereNull('books.deleted_at')
-            ->orderBy('books.created_at', 'desc');
-        $book3s = $query->get();
-
-        return view('client.home', compact('books', 'book2s', 'book3s'));
+        return view('client.home', compact('books', 'book2s', 'book3s', 'book4s'));
     }
 
     public function showbook(string $id)
@@ -89,7 +95,7 @@ class ClientController extends Controller
             ->select('books.*', 'authors.name as author_name')
             ->whereNull('books.deleted_at');
         $books = $query->leftJoin('authors', 'books.author_id', '=', 'authors.id')
-            ->paginate(25);
+            ->paginate(15);
 
         return view('client.books', compact('books'));
     }

@@ -52,11 +52,21 @@ Route::middleware(['auth', 'author'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'combinedDash'])->name('dashboard');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+
+
     Route::get('/books/trash', [BookController::class, 'trashed'])->name('books.trashed');
     Route::get('/books/showtrash/{id}', [BookController::class, 'showtrash'])->name('books.showtrash');
     Route::get('/books/{id}/restore', [BookController::class, 'restore'])->name('books.restore');
     Route::delete('/books/{id}/force-delete', [BookController::class, 'forceDelete'])->name('books.forceDelete');
-    Route::resource('books', BookController::class);
+    Route::get('/books', [BookController::class, 'index'])->name('books.index');
+    Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+    Route::post('/books', [BookController::class, 'store'])->name('books.store');
+
+    Route::get('/books/{book}',  [BookController::class, 'show'])->name('books.show')->middleware('author_owns_book');
+    Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit')->middleware('author_owns_book');
+    Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update')->middleware('author_owns_book');
+    Route::delete('/books/{book}',  [BookController::class, 'destroy'])->name('books.destroy')->middleware('author_owns_book');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -67,6 +77,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
         Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
         Route::get('/authors/trash', [AuthorController::class, 'trashed'])->name('authors.trashed');
         Route::get('/authors/showtrash/{id}', [AuthorController::class, 'showtrash'])->name('authors.showtrash');
         Route::get('/authors/{id}/restore', [AuthorController::class, 'restore'])->name('authors.restore');

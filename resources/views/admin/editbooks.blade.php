@@ -4,7 +4,7 @@
         <div class="card w-100" style="background-color: #1f2937; ">
           <div class="card-header d-flex justify-content-sm-between flex-column flex-sm-row justify-content-start align-items-sm-center align-items-start">
             <h2 class="card-title card-title-custom text-white  pt-3 ps-2 ">Edit Books</h2>
-            <a class="btn btn-warning mt-2 me-5" href="{{route('books.index')}}">Back</a>
+            <a class="btn btn-warning mt-2 me-5" href="{{route('books.index')}}"><i class="fa-solid fa-arrow-left"></i> <span class="ms-2">Back</span></a>
           </div>
           <div class="card-body">
             @if($errors->any())
@@ -17,17 +17,21 @@
               @method('PUT')
               <div class="form-group me-sm-5  ps-2">
                 <label for="booktitle" class="pb-2 text-white card-custom-body-text mt-3 mb-3">Books Title</label>
-                <input type="text" class="form-control" id="booktitle" name="bookTitle" placeholder="Book Title" value={{$book->books_title}}>
+                <input type="text" class="form-control custom-form-control" id="booktitle" name="bookTitle" placeholder="Book Title" value={{$book->books_title}}>
               </div>
 
               <div class="form-group mt-3 me-sm-5  ps-2">
                 <label for="authorname"  class="pb-2 text-white card-custom-body-text mt-3 mb-3">Author Name</label>
-                <select name="author_id" id="" class="form-control">
-                @foreach ($authors as $author)
-                <option {{$author->id == $book->author_id ? 'selected' : ''}} value="{{$author->id}}">{{$author->name}}</option>
-                @endforeach
+                @if(auth()->user()->user_role == 'admin')
+                <select name="author_id" id="" class="form-control custom-form-control">
+                    @foreach ($authors as $author)
+                        <option value="{{$author->id}}">{{$author->name}}</option>
+                    @endforeach  
                 </select>
-              
+            @elseif(auth()->user()->user_role == 'author')
+                <input type="hidden" name="author_name" value="{{ auth()->user()->name }}">
+                <p class="text-white">{{auth()->user()->name}}</p>
+            @endif
               </div>
 
               <div class="form-group mt-3 me-sm-5  ps-2">
@@ -46,7 +50,7 @@
 
               <div class="form-group mt-3 me-sm-5  ps-2">
                 <label for="bookdescription"  class="pb-2 text-white card-custom-body-text mt-3 mb-3">Books Description</label>
-                <textarea name="bookDescription" id="bookdescription" class="form-control" cols="25" rows="8">
+                <textarea name="bookDescription" id="bookdescription" class="form-control custom-form-control" cols="25" rows="8">
 {{$book->books_description}}
                 </textarea>
               </div>
