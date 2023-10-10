@@ -307,3 +307,11 @@ div.dataTables_filter.label.input {
     background-color: #111426;
     border-color: #111426;
 }
+.author-card {
+    width: auto !important;
+}
+@media (min-width: 768px) {
+    .author-card {
+        width: 300px !important;
+    }
+}

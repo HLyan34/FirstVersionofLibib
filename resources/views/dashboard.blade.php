@@ -9,11 +9,29 @@
 
                 <div class="d-flex flex-wrap justify-content-center align-items-center">
                     <div class="statics dash-1 ms-3 mt-2">
-                        <div class="card">
+                      
+                          
+                          @if((auth()->user()->user_role == 'author'))
+                          <div class="card author-card">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                              <div class="d-flex flex-column">
+                                <p class="fw-bold h6 mb-2">Books</p>
+                                <h4 class="text-primary">{{$numberOfBooks}}</h4>
+
+                                {{-- <p class="mt-2 fw-light"><span class=" h6 {{$usersChange > 0 ? 'text-success' : 'text-danger'}}">{{ $usersChange > 0 ? "⬆️ " . abs($usersChange) . "%" : "⬇️ " . abs($usersChange) . "%" }}</span> Last Week</p> --}}
+
+                              </div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g id="feBook0" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="feBook1" fill="currentColor" fill-rule="nonzero"><path id="feBook2" d="m13 16.006l7-.047V5.992l-5.17.007l-1.814 1.814L13 16.006Zm-2-8.193L9.179 6.038L4 6.003v9.956l7 .047V7.813Zm-1-3.77L12 6l2-2l5.997-.008A2 2 0 0 1 22 5.989v9.97a2 2 0 0 1-1.986 2L14 18l-1.996 2L10 18l-6.014-.041a2 2 0 0 1-1.986-2V6.003a2 2 0 0 1 2-2l6 .04Z"/></g></g></svg>
+                              </div>
+                        </div>
+                    </div>
+                          
+                          @else
+                          <div class="card">
                             <div class="card-body d-flex justify-content-between align-items-center">
                               <div class="d-flex flex-column">
                                 <p class="fw-bold h6 mb-2">Users</p>
-                                <h4 class="text-primary">{{$numberOfUsers }}</h4>
+                                <h4 class="text-primary">{{$numberOfUsers}}</h4>
 
                                 <p class="mt-2 fw-light"><span class=" h6 {{$usersChange > 0 ? 'text-success' : 'text-danger'}}">{{ $usersChange > 0 ? "⬆️ " . abs($usersChange) . "%" : "⬇️ " . abs($usersChange) . "%" }}</span> Last Week</p>
 
@@ -168,5 +186,6 @@
      
           </div>
         </div>
-    </div>
+    </div>}
+    @endif
 </x-app-layout>

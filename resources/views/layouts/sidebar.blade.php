@@ -22,12 +22,13 @@
 
     <hr class='w-100  mb-4 sidebar-line mt-3'>
     <ul class="list-unstyled pb-4">
-      @if(auth()->user()->user_role == 'admin') 
       <a href="{{route('dashboard')}}" class="text-decoration-none text-white sidebar-text">
         <li class="sidebar-link">
           <i class="fa-solid fa-tachometer-alt me-3"></i>Dashboard
         </li>
       </a>
+      @if(auth()->user()->user_role == 'admin') 
+    
       <a href="javascript:void(0);" class="text-decoration-none text-white sidebar-text sidebar-link-toggle" data-target=".user-sidebar-lists">
         <li class="sidebar-link">
             <i class="fa-solid fa-user me-3"></i>Users <i class="fa-solid fa-caret-down ms-3"></i>

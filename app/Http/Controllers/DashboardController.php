@@ -8,12 +8,28 @@ use App\Models\Category;
 use App\Models\Subscriber;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function combinedDash()
     {
+        if (auth()->user()->user_role == 'author') {
+            $authorName = auth()->user()->name;
+            $books = Book::with(['author', 'categories'])
+                ->whereNull('deleted_at')
+                ->whereHas('author', function ($query) use ($authorName) {
+                    $query->where('name', $authorName);
+                })
+                ->count();
+
+
+            return view('dashboard', [
+                'numberOfBooks' => $books,
+                // 'booksChange' => $this->calculateChange($books),
+            ]);
+        }
         $categories = Category::all();
         $categoryNames = $categories->pluck('name');
         $categorydata = [];
@@ -25,7 +41,7 @@ class DashboardController extends Controller
         $sub_counts = $subscribers->pluck('count');
 
         foreach ($categories as $category) {
-            $categorydata[] = $category->books->count();;
+            $categorydata[] = $category->books->count();
         }
         return view('dashboard', [
             'numberOfBooks' => $this->getCount(new Book),
