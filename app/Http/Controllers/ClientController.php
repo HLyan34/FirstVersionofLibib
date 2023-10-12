@@ -149,6 +149,7 @@ class ClientController extends Controller
         $query = $request->input('query');
 
         $books = Book::where('books_title', 'like', '%' . $query . '%')->get();
+        $authors = Author::where('name', 'like', '%' . $query . '%')->get();
 
 
         $results = [];
@@ -157,10 +158,56 @@ class ClientController extends Controller
                 'title' => $book->books_title,
                 'url' => route('book.show', ['id' => $book->id]),
 
+
+            ];
+        }
+        foreach ($authors as $author) {
+            $results[] = [
+
+                'title' => $author->name,
+                'url' => route('author.show', ['id' => $author->id]),
+
             ];
         }
 
         return response()->json(['results' => $results]);
+
+        // $query = $request->input('query');
+
+        // $books = Book::where('books_title', 'like', '%' . $query . '%')->get();
+        // $authors = Author::whereHas('books', function ($bookQuery) use ($query) {
+        //     $bookQuery->where('books_title', 'like', '%' . $query . '%');
+        // })
+        //     ->with('books') // Eager load the 'books' relationship
+        //     ->get();
+
+        // $results = [];
+
+        // // Loop through books and format the results
+        // foreach ($books as $book) {
+        //     $results[] = [
+        //         'type' => 'book',
+        //         'title' => $book->books_title,
+        //         'url' => route('book.show', ['id' => $book->id]),
+        //         'authors' => $book->authors->pluck('name')->toArray(),
+        //     ];
+        // }
+
+        // // Loop through authors and format the results
+        // foreach ($authors as $author) {
+        //     $results[] = [
+        //         'type' => 'author',
+        //         'name' => $author->name,
+        //         'books' => $author->books->map(function ($authorBook) {
+        //             return [
+        //                 'title' => $authorBook->books_title,
+        //                 'url' => route('book.show', ['id' => $authorBook->id]),
+        //             ];
+        //         })->toArray(),
+        //     ];
+        // }
+
+        // return response()->json(['results' => $results]);
     }
 
     public function destroy($id)

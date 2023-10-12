@@ -236,7 +236,7 @@ $('#subscriptionForm').on('submit', function(event) {
                         
                           $('#searchResults').empty();
                           $.each(data.results, function (index, result) {
-                          
+                          console.log(result);
                               var bookLink = $('<a>')
                                   .attr('href', result.url) 
                                   .text(result.title)
